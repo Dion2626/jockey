@@ -72,6 +72,10 @@ def calculate(setting):
     st.write("ev" , str(round(money / trials * 100, 2)), "%")
     st.write("Kelly", str(round((p * b - q) / b * 100, 2)), "%")
 if submitted:
-    calculate("Probability Midpoint")
-    calculate("Odds Midpoint")
-    calculate("Lay Odds")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        calculate("Probability Midpoint")
+    with col2:
+        calculate("Odds Midpoint")
+    with col3:
+        calculate("Lay Odds")
