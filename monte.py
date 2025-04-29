@@ -28,7 +28,6 @@ with st.form("form"):
 
 x = random.Random()
 
-
 def calculate(setting):
     money = 0
     prob = {}
@@ -43,6 +42,9 @@ def calculate(setting):
             prob[i] = 1 / lay_odds[i]
 
     payouts = 0
+    if len(prob) < required:
+        st.write("Please try harder. You need at least ", str(required), " races for the jockey boost to be possible.")
+        return
     for i in range(trials):
         wins = 0
 
