@@ -5,7 +5,7 @@ st.write("This is a Monte Carlo simulation for betting odds. It calculates the e
 
 with st.form("form"):
     st.write("Enter the betting odds for back and lay bets:")
-    bet365 = st.number_input("Bet365 Odds", value=2, format="%.2f")
+    bet365 = st.number_input("Bet365 Odds", value=2.00, format="%.2f")
     required = st.number_input("Required Wins", value=1)
     trials = st.number_input("Trials", value=1000000)
     back_odds = {}
