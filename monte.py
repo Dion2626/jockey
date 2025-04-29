@@ -63,7 +63,7 @@ def calculate(setting):
         explanation = "This is the average of the back and lay odds. More conservative than probability midpoint."
     elif setting == "Lay Odds":
         explanation = "This is the lay odds. This is the most conservative strategy."
-    st.markdown(setting, help=explanation)
+    st.markdown(f"**{setting}**", help=explanation)
     true = round(trials / payouts, 4)
     p = 1 / true
     q = 1 - p
