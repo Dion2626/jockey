@@ -11,36 +11,23 @@ with st.form("form"):
     back_odds = {}
     lay_odds = {}
     col1, col2 = st.columns(2)
-    with col1:
-        st.write("Back Odds")
-        for i in range(1, 12):
-            back_odds[i] = st.number_input(f"Race {i}", value=0, key=f"back_{i}")
-    with col2:
-        st.write("Lay Odds")
-        for i in range(1, 12):
-            lay_odds[i] = st.number_input(f"Race {i}", value=0, key=f"lay_{i}")
+    for i in range(1, 12):
+        col1, col2 = st.columns(2)
+        with col1:
+            if i == 1:
+                st.write("Back Odds")
+            back_odds[i] = st.number_input(f"Race {i}", value=0.00, key=f"back_{i}", format="%.2f")
+        with col2:
+            if i == 1:
+                st.write("Lay Odds")
+            lay_odds[i] = st.number_input(f"Race {i}", value=0.00, key=f"lay_{i}", format="%.2f")
+
+
 
     submitted = st.form_submit_button("Submit")
 
 x = random.Random()
 
-# bet365 = 1.65
-# required = 2
-# back_odds[1] = 6.8
-# back_odds[2] = 3.05
-# back_odds[3] = 2.86
-# back_odds[4] = 2.42
-# back_odds[5] = 8.4
-# back_odds[6] = 3.41
-# back_odds[7] = 2.18
-
-# lay_odds[1] = 8.6
-# lay_odds[2] = 3.59
-# lay_odds[3] = 3.45
-# lay_odds[4] = 3.7
-# lay_odds[5] = 23
-# lay_odds[6] = 8.4
-# lay_odds[7] = 2.57
 
 def calculate(setting):
     money = 0
@@ -59,10 +46,8 @@ def calculate(setting):
     for i in range(trials):
         wins = 0
 
-        for j in range(1, len(prob) + 1):
-            if not prob[j]:
-                continue
-            if x.random() < prob[j]:
+        for j in prob.values():
+            if x.random() < j:
                 wins += 1
         if wins >= required:
             payouts += 1
