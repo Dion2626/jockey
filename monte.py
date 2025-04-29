@@ -11,7 +11,7 @@ with st.form("form"):
     back_odds = {}
     lay_odds = {}
     col1, col2 = st.columns(2)
-    for i in range(1, 12):
+    for i in range(1, 13):
         col1, col2 = st.columns(2)
         with col1:
             if i == 1:
@@ -56,7 +56,14 @@ def calculate(setting):
             money += (bet365 - 1)
         else:
             money -= 1
-    st.write(setting)
+    explanation = ""
+    if setting == "Probability Midpoint":
+        explanation = "This is the average of the back and lay probabilities. More aggressive than odds midpoint."
+    elif setting == "Odds Midpoint":
+        explanation = "This is the average of the back and lay odds. More conservative than probability midpoint."
+    elif setting == "Lay Odds":
+        explanation = "This is the lay odds. This is the most conservative strategy."
+    st.markdown(setting, help=explanation)
     true = round(trials / payouts, 4)
     p = 1 / true
     q = 1 - p
