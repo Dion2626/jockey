@@ -5,8 +5,8 @@ st.write("This is a Monte Carlo simulation for betting odds. It calculates the e
 
 with st.form("form"):
     st.write("Enter the betting odds for back and lay bets:")
-    bet365 = st.number_input("Bet365 Odds", value=1.65)
-    required = st.number_input("Required Wins", value=2)
+    bet365 = st.number_input("Bet365 Odds", value=2)
+    required = st.number_input("Required Wins", value=1)
     trials = st.number_input("Trials", value=1000000)
     back_odds = {}
     lay_odds = {}
@@ -57,8 +57,13 @@ def calculate(setting):
         else:
             money -= 1
     st.write(setting)
-    st.write("Odds", str(round(trials / payouts, 4)))
+    true = round(trials / payouts, 4)
+    p = 1 / true
+    q = 1 - p
+    b = bet365 - 1
+    st.write("Odds", str(true))
     st.write("ev" , str(round(money / trials * 100, 2)), "%")
+    st.write("Kelly", str(round((p * b - q) / b * 100, 2)), "%")
 if submitted:
     calculate("Probability Midpoint")
     calculate("Odds Midpoint")
