@@ -79,4 +79,4 @@ if submitted:
         calculate("Odds Midpoint")
     with col3:
         calculate("Lay Odds")
-st.info("Made by @shiina4904. Please feel free to message about any bugs/quirks/edge cases/suggestions to make it better! multiple jockeys in one race -> combined odds calculator for now as interface would be very clunky.")
+st.info("Made by @shiina4904. Please feel free to message about any bugs/quirks/edge cases/suggestions to make it better! multiple jockeys without using combined odds calculator is coming soon tm but please use combined odds calculator for now.")
