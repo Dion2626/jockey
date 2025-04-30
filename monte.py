@@ -1,7 +1,7 @@
 import random
 import streamlit as st
 st.title("Jockey Boost")
-st.write("This is a Monte Carlo simulation for betting odds. It calculates the expected value of different betting strategies based on the given odds.")
+st.write("This is a Monte Carlo simulation for betting odds. It calculates the expected value of different betting strategies based on the given odds. Made by @shiina4904.")
 
 with st.form("form"):
     st.write("Enter the betting odds for back and lay bets:")
