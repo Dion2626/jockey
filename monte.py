@@ -79,3 +79,4 @@ if submitted:
         calculate("Odds Midpoint")
     with col3:
         calculate("Lay Odds")
+st.info("Made by @shiina4904.")
