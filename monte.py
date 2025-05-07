@@ -6,6 +6,7 @@ st.write("This is a Monte Carlo simulation for betting odds. It calculates the e
 with st.form("form"):
     st.write("Enter the betting odds for back and lay bets:")
     bet365 = st.number_input("Bet365 Odds", value=2.00, format="%.2f")
+    back_plus = st.number_input("back + x%", value=0)
     required = st.number_input("Required Wins", value=1)
     trials = st.number_input("Trials", value=1000000)
     back_odds = {}
@@ -40,6 +41,8 @@ def calculate(setting):
             prob[i] = 1 / ((back_odds[i] + lay_odds[i]) / 2)
         elif setting == "Lay Odds":
             prob[i] = 1 / lay_odds[i]
+        elif setting == "back_plus":
+            prob[i] = 1 / (back_odds[i] + (back_plus / 100 * back_odds[i]))
 
     payouts = 0
     if len(prob) < required:
@@ -72,6 +75,8 @@ def calculate(setting):
     st.write("ev" , str(round(money / trials * 100, 2)), "%")
     st.write("Kelly", str(round((p * b - q) / b * 100, 2)), "%")
 if submitted:
+    if back_plus != 0:
+        calculate("back_plus")
     col1, col2, col3 = st.columns(3)
     with col1:
         calculate("Probability Midpoint")
@@ -79,4 +84,3 @@ if submitted:
         calculate("Odds Midpoint")
     with col3:
         calculate("Lay Odds")
-st.info("Made by @shiina4904. Please feel free to message about any bugs/quirks/edge cases/suggestions to make it better! multiple jockeys without using combined odds calculator is coming soon tm but please use combined odds calculator for now.")
